@@ -1,0 +1,12 @@
+services:
+  wiki-go:
+    image: leomoonstudios/wiki-go
+    volumes:
+      - ./wiki-go/data:/wiki/data:rw
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wiki-go.rule=Host(`wiki.nas.local`)"
+      - "traefik.http.routers.wiki-go.entrypoints=web"
+      - "traefik.http.services.wiki-go.loadbalancer.server.port=8080"
+
+

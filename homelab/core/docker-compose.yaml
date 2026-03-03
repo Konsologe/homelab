@@ -10,3 +10,4 @@ include:
     - traefik.yaml
     - portainer.yaml
     - landing-page/homepage.yaml
+    - wiki-go/wiki-go.yaml

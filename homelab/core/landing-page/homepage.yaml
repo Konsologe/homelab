@@ -1,0 +1,14 @@
+services:
+  homelab:
+    image: ghcr.io/gethomepage/homepage:latest
+    volumes:
+      - ./landing-page/homepage-config:/app/config
+      - ./landing-page/homepage-backgrounds:/app/public/images
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: homelab.nas.local
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.homelab.rule=Host(`homelab.nas.local`)"
+      - "traefik.http.routers.homelab.entrypoints=web"
+      - "traefik.http.services.homelab.loadbalancer.server.port=3000"

@@ -1,0 +1,31 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Infrastructure:
+    - DXP2800:
+        href: http://nas.local:9999/
+    - Dozzle:
+        href: http://dozzle.nas.local/
+        description: Container monitoring
+        container: core-dozzle-1
+    - Traefik:
+        href: http://traefik.nas.local/
+        description: Reverse proxy
+        container: core-traefik-1
+    - Portainer:
+        href: http://portainer.nas.local/
+        description: Container management
+        container: core-portainer-1
+
+- Knowledge:
+    - Wiki:
+        href: http://wiki.nas.local/
+        description: Wiki-Go
+        container: core-wiki-go-1
+
+- DevTools:
+    - Mailpit:
+        href: http://mailpit.nas.local/
+        description: Mailpit
+        container: devlab-mailpit-1
