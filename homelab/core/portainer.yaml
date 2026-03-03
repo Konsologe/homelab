@@ -1,0 +1,19 @@
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    restart: unless-stopped
+    command: -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - portainer_data:/data
+    networks:
+      - homelab-net
+    labels:
+      - "traefik.enable=true"
+      # Make sure to put this also into your hosts file with the IP address of your NAS
+      - "traefik.http.routers.portainer.rule=Host(`portainer.nas.local`)"
+      - "traefik.http.routers.portainer.entrypoints=web"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+
+volumes:
+  portainer_data:

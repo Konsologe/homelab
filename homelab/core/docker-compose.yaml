@@ -1,0 +1,12 @@
+name: homelab-core
+
+networks:
+  homelab-net:
+    driver: bridge
+
+include:
+  - path:
+    - dozzle.yaml
+    - traefik.yaml
+    - portainer.yaml
+    - landing-page/homepage.yaml

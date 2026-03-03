@@ -1,0 +1,17 @@
+services:
+  dozzle:
+    image: amir20/dozzle:latest
+    restart: unless-stopped
+    ports:
+      - "10000:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - homelab-net
+    labels:
+      - "traefik.enable=true"
+      # Make sure to put this also into your hosts file with the IP address of your NAS
+      - "traefik.http.routers.dozzle.rule=Host(`dozzle.nas.local`)"
+      - "traefik.http.routers.dozzle.entrypoints=web"
+      - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
+      - "traefik.http.routers.dozzle.middlewares=auth"

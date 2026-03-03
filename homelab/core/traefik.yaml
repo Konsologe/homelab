@@ -1,0 +1,25 @@
+services:
+  traefik:
+    image: traefik:latest
+    restart: unless-stopped
+    command:
+      - --log.level=INFO
+      - --entrypoints.web.address=:80
+      - --api.dashboard=true
+      - --providers.docker=true
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./users/homelab.htpasswd:/etc/traefik/.htpasswd:ro
+    networks:
+      - homelab-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.auth.basicauth.usersfile=/etc/traefik/.htpasswd"
+      # Traefik Dashboard-Router
+      # Make sure to put this also into your hosts file with the IP address of your NAS
+      - "traefik.http.routers.dashboard.rule=Host(`traefik.nas.local`)"
+      - "traefik.http.routers.dashboard.entrypoints=web"
+      - "traefik.http.routers.dashboard.service=api@internal"
+      - "traefik.http.routers.dashboard.middlewares=auth"
