@@ -1,0 +1,21 @@
+name: homelab-devtools
+
+networks:
+  homelab-devtools-net:
+    driver: bridge
+
+services:
+  mailpit:
+    image: axllent/mailpit:latest
+    restart: unless-stopped
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - homelab-devtools-net
+    labels:
+      - "traefik.enable=true"
+      # Make sure to put this also into your hosts file with the IP address of your NAS
+      - "traefik.http.routers.mailpit.rule=Host(`mailpit.nas.local`)"
+      - "traefik.http.routers.mailpit.entrypoints=web"
+      - "traefik.http.services.mailpit.loadbalancer.server.port=8025"
