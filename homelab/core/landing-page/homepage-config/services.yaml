@@ -18,10 +18,10 @@
         description: Container management
         container: core-portainer-1
 
-- Knowledge:
-    - Wiki:
+- KnowledgeBase:
+    - WikiGo:
         href: http://wiki.nas.local/
-        description: Wiki-Go
+        description: Homelab Wiki-Go
         container: core-wiki-go-1
 
 - DevTools:
