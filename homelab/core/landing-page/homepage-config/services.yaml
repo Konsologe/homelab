@@ -31,6 +31,6 @@
 
 - DevTools:
     - Mailpit:
-        href: http://mailpit.nas.local/
+        href: http://mailpit.home.arpa/
         description: Mailpit
-        container: devlab-mailpit-1
+        container: devtools-mailpit-1

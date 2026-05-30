@@ -6,8 +6,18 @@
     - Github:
         - abbr: GH
           href: https://github.com/
+    - Codingame:
+        - href: https://www.codingame.com/
+
+- AI-Tools:
+    - ChatGPT:
+        - href: https://chatgpt.com/
+    - Gemini:
+        - href: https://gemini.google.com
 
 - Social:
+    - LinkedIn:
+        - href: https://www.linkedin.com/feed/
     - Reddit:
         - abbr: RE
           href: https://reddit.com/
@@ -16,3 +26,15 @@
     - YouTube:
         - abbr: YT
           href: https://youtube.com/
+    - Netflix:
+        - abbr: N
+          href: https://www.netflix.com/de/
+    - Magenta:
+        - abbr: M
+          href: https://web2.magentatv.de
+    - Soundcloud:
+        - abbr: SC
+          href: https://soundcloud.com/discover
+    - Twitch:
+        - abbr: T
+          href: https://www.twitch.tv/

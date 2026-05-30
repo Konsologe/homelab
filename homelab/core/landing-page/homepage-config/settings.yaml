@@ -2,6 +2,12 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/settings/
 
+title: Homelab landing page
+startUrl: http://homelab.nas.local
+background: /images/homelab5.png
+
+disableIndexing: true
+
 providers:
   openweathermap: openweathermapapikey
   weatherapi: weatherapiapikey
