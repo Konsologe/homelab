@@ -4,20 +4,24 @@
 
 - Infrastructure:
     - DXP2800:
-        href: http://nas.local:9999
+        href: http://nas.home.arpa:9999
         description: UGREEN NAS DXP2800
     - Dozzle:
-        href: http://dozzle.nas.local/
+        href: http://dozzle.home.arpa/
         description: Container monitoring
         container: core-dozzle-1
     - Traefik:
-        href: http://traefik.nas.local/
+        href: http://traefik.home.arpa/
         description: Reverse proxy
         container: core-traefik-1
     - Portainer:
-        href: http://portainer.nas.local/
+        href: http://portainer.home.arpa/
         description: Container management
         container: core-portainer-1
+    - Pi-hole:
+        href: http://pihole.home.arpa/admin
+        description: Pi-hole
+        container: pihole-pihole-1
 
 - KnowledgeBase:
     - WikiGo:

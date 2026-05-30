@@ -11,7 +11,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Make sure to put this also into your hosts file with the IP address of your NAS
-      - "traefik.http.routers.dozzle.rule=Host(`dozzle.nas.local`)"
+      - "traefik.http.routers.dozzle.rule=Host(`dozzle.nas.local`) || Host(`dozzle.home.arpa`)"
       - "traefik.http.routers.dozzle.entrypoints=web"
       - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
       - "traefik.http.routers.dozzle.middlewares=auth"
