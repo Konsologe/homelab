@@ -1,0 +1,34 @@
+services:
+  pihole:
+    build: .
+    hostname: pihole
+    restart: unless-stopped
+    environment:
+      TZ: "Europe/Berlin"
+      FTLCONF_webserver_api_password: "change_me"
+      FTLCONF_misc_etc_dnsmasq_d: "true"
+    volumes:
+      - vol_pihole_etc:/etc/pihole
+    networks:
+      pihole_net:
+        # Make sure this IP Address is not used in DHCP
+        ipv4_address: 192.168.178.250
+        ipv6_address: fd62:7ea:d8c8::250
+
+networks:
+  pihole_net:
+    driver: macvlan
+    enable_ipv6: true
+    driver_opts:
+      # Check the name of your default interface on the NAS with "ip route | grep default"
+      parent: eth0
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.178.0/24
+          gateway: 192.168.178.1
+        - subnet: fd62:7ea:d8c8::/64
+
+volumes:
+  vol_pihole_etc:
+    name: vol_pihole_etc

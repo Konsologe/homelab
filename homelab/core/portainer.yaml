@@ -11,7 +11,7 @@ services:
     labels:
       - "traefik.enable=true"
       # Make sure to put this also into your hosts file with the IP address of your NAS
-      - "traefik.http.routers.portainer.rule=Host(`portainer.nas.local`)"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.nas.local`) || Host(`portainer.home.arpa`)"
       - "traefik.http.routers.portainer.entrypoints=web"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
 

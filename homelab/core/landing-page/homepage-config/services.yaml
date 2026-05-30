@@ -4,7 +4,8 @@
 
 - Infrastructure:
     - DXP2800:
-        href: http://nas.local:9999/
+        href: http://nas.local:9999
+        description: UGREEN NAS DXP2800
     - Dozzle:
         href: http://dozzle.nas.local/
         description: Container monitoring
