@@ -30,6 +30,10 @@
         container: core-wiki-go-1
 
 - DevTools:
+    - Gitea:
+        href: http://gitea.home.arpa/
+        description: Gitea
+        container: devtools-gitea-1
     - Mailpit:
         href: http://mailpit.home.arpa/
         description: Mailpit
