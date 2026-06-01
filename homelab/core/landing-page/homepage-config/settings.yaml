@@ -8,6 +8,24 @@ background: /images/homelab5.png
 
 disableIndexing: true
 
+layout:
+  Infrastructure:
+    tab: Infrastructure
+  KnowledgeBase:
+    tab: Infrastructure
+  DevTools:
+    tab: Infrastructure
+  MyTools:
+    tab: MyTools
+  Developer:
+    tab: MyTools
+  AI-Tools:
+    tab: MyTools
+  Social:
+    tab: MyTools
+  Entertainment:
+    tab: MyTools
+
 providers:
   openweathermap: openweathermapapikey
   weatherapi: weatherapiapikey
