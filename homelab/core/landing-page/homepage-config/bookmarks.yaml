@@ -38,3 +38,7 @@
     - Twitch:
         - abbr: T
           href: https://www.twitch.tv/
+
+- Help:
+    - Homepage:
+      - href: https://gethomepage.dev/configs/settings/
