@@ -1,0 +1,17 @@
+services:
+  nexus:
+    image: sonatype/nexus3:latest
+    restart: unless-stopped
+    volumes:
+      - nexus-data:/nexus-data
+    networks:
+      - homelab-devtools-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nexus.rule=Host(`nexus.home.arpa`)"
+      - "traefik.http.routers.nexus.entrypoints=web"
+      - "traefik.http.services.nexus.loadbalancer.server.port=8081"
+
+volumes:
+  nexus-data:
+    name: nexus-data

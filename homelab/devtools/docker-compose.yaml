@@ -8,3 +8,4 @@ include:
   - path:
     - mailpit.yaml
     - gitea/gitea.yaml
+    - nexus.yaml
