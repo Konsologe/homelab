@@ -1,0 +1,19 @@
+services:
+  jenkins-lts:
+    build: ./jenkins
+    restart: unless-stopped
+    ports:
+      - "50000:50000"
+    environment:
+      JENKINS_ADMIN_PASSWORD: ${JENKINS_ADMIN_PASSWORD}
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jenkins.rule=Host(`jenkins.home.arpa`)"
+      - "traefik.http.routers.jenkins.entrypoints=web"
+      - "traefik.http.services.jenkins.loadbalancer.server.port=8080"
+
+volumes:
+  jenkins_home:
+    name: jenkins_home

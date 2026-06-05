@@ -9,3 +9,4 @@ include:
     - mailpit.yaml
     - gitea/gitea.yaml
     - nexus.yaml
+    - jenkins/jenkins.yaml

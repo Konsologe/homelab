@@ -1,0 +1,23 @@
+jenkins:
+  systemMessage: "Homelab - Jenkins"
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+        - id: "admin"
+          name: "Jenkins Admin"
+          password: "${JENKINS_ADMIN_PASSWORD}"
+
+  authorizationStrategy:
+    globalMatrix:
+      entries:
+        - user:
+            name: "admin"
+            permissions:
+              - "Overall/Administer"
+
+unclassified:
+  location:
+    url: "http://jenkins.home.arpa/"
