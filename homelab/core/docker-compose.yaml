@@ -11,3 +11,4 @@ include:
     - portainer.yaml
     - landing-page/homepage.yaml
     - wiki-go/wiki-go.yaml
+    - step-ca/step-ca.yaml

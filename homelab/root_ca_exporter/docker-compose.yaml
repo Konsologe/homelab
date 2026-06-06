@@ -1,0 +1,20 @@
+services:
+  export-step-ca-root:
+    image: busybox:stable
+    container_name: root-ca-exporter
+    restart: "no"
+    volumes:
+      - step_ca_data:/source:ro
+      - ./export:/target
+    command:
+      - sh
+      - -c
+      - |
+        mkdir -p /target
+        cp /source/certs/root_ca.crt /target/root_ca.crt
+        chmod 644 /target/root_ca.crt
+        echo "Exported root CA to /target/root_ca.crt"
+
+volumes:
+  step_ca_data:
+    external: true

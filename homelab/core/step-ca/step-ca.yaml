@@ -1,0 +1,30 @@
+services:
+  step-ca:
+    image: smallstep/step-ca:latest
+    container_name: step-ca
+    restart: unless-stopped
+
+    environment:
+      DOCKER_STEPCA_INIT_NAME: "Konsologe Homelab CA"
+      DOCKER_STEPCA_INIT_DNS_NAMES: "step-ca.home.arpa,step-ca,localhost,127.0.0.1"
+      DOCKER_STEPCA_INIT_ADDRESS: ":9000"
+      DOCKER_STEPCA_INIT_PASSWORD: "${STEP_CA_PASSWORD}"
+      DOCKER_STEPCA_INIT_REMOTE_MANAGEMENT: true
+      DOCKER_STEPCA_INIT_PROVISIONER_NAME: "admin"
+      DOCKER_STEPCA_INIT_SSH: true
+      DOCKER_STEPCA_INIT_ACME: true
+
+    volumes:
+      - step_ca_data:/home/step
+    networks:
+      - homelab-net
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.step-ca.rule=Host(`step-ca.home.arpa`)"
+      - "traefik.http.routers.step-ca.entrypoints=web"
+      - "traefik.http.services.step-ca.loadbalancer.server.port=9000"
+
+volumes:
+  step_ca_data:
+    name: step_ca_data2

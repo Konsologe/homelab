@@ -10,8 +10,20 @@ services:
       - homelab-net
     labels:
       - "traefik.enable=true"
-      # Make sure to put this also into your hosts file with the IP address of your NAS
-      - "traefik.http.routers.dozzle.rule=Host(`dozzle.nas.local`) || Host(`dozzle.home.arpa`)"
+
+      # HTTP -> HTTPS redirect
+      - "traefik.http.routers.dozzle.rule=Host(`dozzle.home.arpa`)"
       - "traefik.http.routers.dozzle.entrypoints=web"
+      - "traefik.http.routers.dozzle.middlewares=dozzle-redirect"
+
+      # HTTPS router
+      - "traefik.http.routers.dozzle-https.rule=Host(`dozzle.home.arpa`)"
+      - "traefik.http.routers.dozzle-https.entrypoints=websecure"
+      - "traefik.http.routers.dozzle-https.tls=true"
+      - "traefik.http.routers.dozzle-https.tls.certresolver=stepca"
+
+      # Redirect Middleware
+      - "traefik.http.middlewares.dozzle-redirect.redirectscheme.scheme=https"
+
+      # Dozzle internal port
       - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
-      - "traefik.http.routers.dozzle.middlewares=auth"

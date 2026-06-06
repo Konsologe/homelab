@@ -3,17 +3,33 @@ services:
     image: traefik:latest
     restart: unless-stopped
     command:
-      - --log.level=INFO
-      - --entrypoints.web.address=:80
-      - --api.dashboard=true
-      - --providers.docker=true
+      - "--log.level=INFO"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--certificatesresolvers.stepca.acme.caserver=https://step-ca:9000/acme/acme/directory"
+      - "--certificatesresolvers.stepca.acme.email=admin@home.arpa"
+      - "--certificatesresolvers.stepca.acme.storage=/letsencrypt/stepca-acme.json"
+      - "--certificatesresolvers.stepca.acme.httpchallenge=true"
+      - "--certificatesresolvers.stepca.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.stepca.acme.cacertificates=/step-ca/certs/root_ca.crt"
+
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./users/homelab.htpasswd:/etc/traefik/.htpasswd:ro
+      - traefik_letsencrypt:/letsencrypt
+      - step_ca_data:/step-ca:ro
     networks:
-      - homelab-net
+      homelab-net:
+          aliases:
+            - dozzle.home.arpa
+    depends_on:
+      step-ca:
+        condition: service_started
     labels:
       - "traefik.enable=true"
       - "traefik.http.middlewares.auth.basicauth.usersfile=/etc/traefik/.htpasswd"
@@ -23,3 +39,7 @@ services:
       - "traefik.http.routers.dashboard.entrypoints=web"
       - "traefik.http.routers.dashboard.service=api@internal"
       - "traefik.http.routers.dashboard.middlewares=auth"
+
+volumes:
+  traefik_letsencrypt:
+    name: traefik_letsencrypt2
