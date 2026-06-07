@@ -42,4 +42,4 @@ services:
 
 volumes:
   traefik_letsencrypt:
-    name: traefik_letsencrypt2
+    name: traefik_letsencrypt

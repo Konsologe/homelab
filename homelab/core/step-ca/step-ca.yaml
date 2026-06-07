@@ -27,4 +27,4 @@ services:
 
 volumes:
   step_ca_data:
-    name: step_ca_data2
+    name: step_ca_data
