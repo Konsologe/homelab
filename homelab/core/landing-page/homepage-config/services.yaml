@@ -10,6 +10,10 @@
         href: http://dozzle.home.arpa/
         description: Container monitoring
         container: core-dozzle-1
+    - step-ca:
+        href: http://step-ca.home.arpa/
+        description: step-ca
+        container: step-ca
     - Traefik:
         href: http://traefik.home.arpa/
         description: Reverse proxy
