@@ -187,14 +187,6 @@ Ubuntu Server planned for:
 
 ---
 
-## Documentation
-
-Documentation is gradually being moved into Wiki-Go and will later be published automatically on:
-
-https://www.konsologe.de
-
----
-
 ## Contributing
 
 Issues, ideas and suggestions are always welcome.
