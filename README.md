@@ -1,8 +1,18 @@
+![License](https://img.shields.io/github/license/Konsologe/homelab)
+![Last Commit](https://img.shields.io/github/last-commit/Konsologe/homelab)
+
 # Konsologe Homelab
 
 Build your own development platform with open-source software.
 
 This repository contains the configuration files used throughout the **Konsologe Homelab** video series.
+
+## Latest Episode
+
+Part 12 - Automatic HTTPS with step-ca
+https://youtu.be/_NlGhuxCQ_8
+
+## Goals
 
 The goal of the project is to create a reproducible environment for learning and experimenting with:
 
