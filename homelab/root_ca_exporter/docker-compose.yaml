@@ -18,3 +18,4 @@ services:
 volumes:
   step_ca_data:
     external: true
+    name: step_ca_data
