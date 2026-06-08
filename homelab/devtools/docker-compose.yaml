@@ -5,8 +5,11 @@ networks:
     driver: bridge
 
 include:
-  - path:
-    - mailpit.yaml
-    - gitea/gitea.yaml
-    - nexus.yaml
-    - jenkins/jenkins.yaml
+  - path: ./mailpit/mailpit.yaml
+    project_directory: ./mailpit
+  - path: ./gitea/gitea.yaml
+    project_directory: ./gitea
+  - path: ./nexus/nexus.yaml
+    project_directory: ./nexus
+  - path: ./jenkins/jenkins.yaml
+    project_directory: ./jenkins
