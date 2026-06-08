@@ -1,0 +1,15 @@
+services:
+  jenkins-agent-maven:
+    build: .
+    container_name: jenkins-agent-maven
+    user: root
+    environment:
+      JENKINS_AGENT_SSH_PUBKEY: "${JENKINS_SSH_PUBLIC_KEY}"
+    volumes:
+      - jenkins_agent_maven_home:/home/jenkins/agent
+#    dns:
+#      - 192.168.178.250
+
+volumes:
+  jenkins_agent_maven_home:
+    name: jenkins_agent_maven_home

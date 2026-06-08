@@ -1,0 +1,57 @@
+jenkins:
+  systemMessage: "Homelab - Jenkins"
+
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+        - id: "admin"
+          name: "Jenkins Admin"
+          password: "${JENKINS_ADMIN_PASSWORD}"
+        - id: "dev"
+          name: "Developer"
+          password: "${JENKINS_DEV_PASSWORD}"
+
+  authorizationStrategy:
+    globalMatrix:
+      entries:
+        - user:
+            name: "admin"
+            permissions:
+              - "Overall/Administer"
+
+        - user:
+            name: "dev"
+            permissions:
+              - "Overall/Read"
+              - "Job/Read"
+              - "Job/Build"
+              - "Job/Workspace"
+
+  nodes:
+    - permanent:
+        name: "maven-agent"
+        remoteFS: "/home/jenkins/agent"
+        labelString: "maven java"
+        launcher:
+          ssh:
+            host: "jenkins-agent-maven"
+            port: 22
+            credentialsId: "jenkins-ssh"
+            sshHostKeyVerificationStrategy: nonVerifyingKeyVerificationStrategy
+
+unclassified:
+  location:
+    url: "http://jenkins.home.arpa/"
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - basicSSHUserPrivateKey:
+              id: "jenkins-ssh"
+              username: "jenkins"
+              privateKeySource:
+                directEntry:
+                  privateKey: "${readFile:${JENKINS_SSH_KEY_FILE_PATH}}" # Path to file loaded from Environment Variable

@@ -6,3 +6,4 @@ credentials
 credentials-binding
 matrix-auth
 pipeline-stage-view
+ssh-slaves

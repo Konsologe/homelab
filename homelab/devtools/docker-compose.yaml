@@ -13,3 +13,5 @@ include:
     project_directory: ./nexus
   - path: ./jenkins/jenkins.yaml
     project_directory: ./jenkins
+  - path: ./jenkins-agent-maven/jenkins-agent-maven.yaml
+    project_directory: ./jenkins-agent-maven
