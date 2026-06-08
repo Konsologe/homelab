@@ -37,16 +37,16 @@
     - Gitea:
         href: http://gitea.home.arpa/
         description: Gitea
-        container: devtools-gitea-1
+        container: gitea
     - Jenkins:
         href: http://jenkins.home.arpa/
         description: Jenkins
-        container: devtools-jenkins-lts-1
+        container: jenkins
     - Nexus:
         href: http://nexus.home.arpa/
         description: Nexus
-        container: devtools-nexus-1
+        container: nexus
     - Mailpit:
         href: http://mailpit.home.arpa/
         description: Mailpit
-        container: devtools-mailpit-1
+        container: mailpit
