@@ -1,6 +1,7 @@
 services:
   gitea:
     build: ./gitea
+    container_name: gitea
     restart: unless-stopped
     environment:
       USER_UID: 1000
