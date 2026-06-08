@@ -69,3 +69,8 @@ credentials:
               description: "Gitea dev user"
               username: "${GITEA_DEV_USER}"
               password: "${GITEA_DEV_PASSWORD}"
+          - usernamePassword:
+              id: "nexus-deploy"
+              description: "Nexus deploy user"
+              username: "${NEXUS_DEPLOY_USER}"
+              password: "${NEXUS_DEPLOY_PASSWORD}"

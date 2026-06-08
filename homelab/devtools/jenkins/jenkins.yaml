@@ -11,6 +11,8 @@ services:
       JENKINS_SSH_KEY_FILE_PATH: ${JENKINS_SSH_KEY_FILE_PATH}
       GITEA_DEV_USER: ${GITEA_DEV_USER}
       GITEA_DEV_PASSWORD: ${GITEA_DEV_PASSWORD}
+      NEXUS_DEPLOY_USER: ${NEXUS_DEPLOY_USER}
+      NEXUS_DEPLOY_PASSWORD: ${NEXUS_DEPLOY_PASSWORD}
     volumes:
       - jenkins_home:/var/jenkins_home
       - ./keys/jenkins_ssh_key:/run/secrets/jenkins_ssh_key:ro
