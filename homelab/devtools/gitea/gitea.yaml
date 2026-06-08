@@ -29,6 +29,8 @@ services:
       GITEA_DEV_EMAIL: ${GITEA_DEV_EMAIL}
     volumes:
       - gitea-data:/data
+    networks:
+      - homelab-devtools-net
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.gitea.rule=Host(`gitea.home.arpa`)"
