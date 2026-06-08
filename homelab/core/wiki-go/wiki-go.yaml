@@ -2,7 +2,7 @@ services:
   wiki-go:
     image: leomoonstudios/wiki-go
     volumes:
-      - ./wiki-go/data:/wiki/data:rw
+      - ./data:/wiki/data:rw
     user: 1000:10
     labels:
       - "traefik.enable=true"

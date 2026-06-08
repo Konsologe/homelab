@@ -5,10 +5,15 @@ networks:
     driver: bridge
 
 include:
-  - path:
-    - dozzle.yaml
-    - traefik.yaml
-    - portainer.yaml
-    - landing-page/homepage.yaml
-    - wiki-go/wiki-go.yaml
-    - step-ca/step-ca.yaml
+  - path: ./dozzle/dozzle.yaml
+    project_directory: ./dozzle
+  - path: ./traefik/traefik.yaml
+    project_directory: ./traefik
+  - path: ./portainer/portainer.yaml
+    project_directory: ./portainer
+  - path: ./landing-page/homepage.yaml
+    project_directory: ./landing-page
+  - path: ./wiki-go/wiki-go.yaml
+    project_directory: ./wiki-go
+  - path: ./step-ca/step-ca.yaml
+    project_directory: ./step-ca

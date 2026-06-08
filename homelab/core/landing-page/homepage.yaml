@@ -2,8 +2,8 @@ services:
   homelab:
     image: ghcr.io/gethomepage/homepage:latest
     volumes:
-      - ./landing-page/homepage-config:/app/config
-      - ./landing-page/homepage-backgrounds:/app/public/images
+      - ./homepage-config:/app/config
+      - ./homepage-backgrounds:/app/public/images
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       HOMEPAGE_ALLOWED_HOSTS: homelab.home.arpa
