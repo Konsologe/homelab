@@ -12,9 +12,9 @@ services:
     volumes:
       - jenkins_home:/var/jenkins_home
       - ./keys/jenkins_ssh_key:/run/secrets/jenkins_ssh_key:ro
-#    depends_on:
-#      jenkins-ssh-keygen:
-#        condition: service_completed_successfully
+    depends_on:
+      jenkins-ssh-keygen:
+        condition: service_completed_successfully
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.jenkins.rule=Host(`jenkins.home.arpa`)"
@@ -23,25 +23,25 @@ services:
 #    dns:
 #      - 192.168.178.250
 
-#  jenkins-ssh-keygen:
-#    image: alpine:latest
-#    container_name: jenkins-ssh-keygen
-#    working_dir: /keys
-#    volumes:
-#      - ./keys:/keys
-#    command:
-#      - sh
-#      - -c
-#      - |
-#        apk add --no-cache openssh-keygen >/dev/null
-#        if [ ! -f jenkins_ssh_key ]; then
-#          ssh-keygen -t ed25519 -f jenkins_ssh_key -N "" -C "jenkins ssh key"
-#          chmod 600 jenkins_ssh_key
-#          chmod 644 jenkins_ssh_key.pub
-#        else
-#          echo "Jenkins SSH key already exists. Nothing to do."
-#        fi
-#    restart: "no"
+  jenkins-ssh-keygen:
+    image: alpine:latest
+    container_name: jenkins-ssh-keygen
+    working_dir: /keys
+    volumes:
+      - ./keys:/keys
+    command:
+      - sh
+      - -c
+      - |
+        apk add --no-cache openssh-keygen >/dev/null
+        if [ ! -f jenkins_ssh_key ]; then
+          ssh-keygen -t ed25519 -f jenkins_ssh_key -N "" -C "jenkins ssh key"
+          chmod 600 jenkins_ssh_key
+          chmod 644 jenkins_ssh_key.pub
+        else
+          echo "Jenkins SSH key already exists. Nothing to do."
+        fi
+    restart: "no"
 
 volumes:
   jenkins_home:
