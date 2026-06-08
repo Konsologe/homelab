@@ -12,8 +12,11 @@ services:
       - |
         mkdir -p /target
         cp /source/certs/root_ca.crt /target/root_ca.crt
+        cp /source/certs/intermediate_ca.crt /target/intermediate_ca.crt
         chmod 644 /target/root_ca.crt
+        chmod 644 /target/intermediate_ca.crt
         echo "Exported root CA to /target/root_ca.crt"
+        echo "Exported intermediate CA to /target/intermediate_ca.crt"
 
 volumes:
   step_ca_data:
