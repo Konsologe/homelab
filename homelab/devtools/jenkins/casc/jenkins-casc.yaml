@@ -64,3 +64,8 @@ credentials:
               privateKeySource:
                 directEntry:
                   privateKey: "${readFile:${JENKINS_SSH_KEY_FILE_PATH}}" # Path to file loaded from Environment Variable
+          - usernamePassword:
+              id: "gitea-dev"
+              description: "Gitea dev user"
+              username: "${GITEA_DEV_USER}"
+              password: "${GITEA_DEV_PASSWORD}"

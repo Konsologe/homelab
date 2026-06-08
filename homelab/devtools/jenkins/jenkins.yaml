@@ -9,6 +9,8 @@ services:
       JENKINS_ADMIN_PASSWORD: ${JENKINS_ADMIN_PASSWORD}
       JENKINS_DEV_PASSWORD: ${JENKINS_DEV_PASSWORD}
       JENKINS_SSH_KEY_FILE_PATH: ${JENKINS_SSH_KEY_FILE_PATH}
+      GITEA_DEV_USER: ${GITEA_DEV_USER}
+      GITEA_DEV_PASSWORD: ${GITEA_DEV_PASSWORD}
     volumes:
       - jenkins_home:/var/jenkins_home
       - ./keys/jenkins_ssh_key:/run/secrets/jenkins_ssh_key:ro
