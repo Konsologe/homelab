@@ -46,6 +46,13 @@ jenkins:
 unclassified:
   location:
     url: "http://jenkins.home.arpa/"
+    adminAddress: "Jenkins <jenkins@home.arpa>"
+  mailer:
+    smtpHost: "mailpit"
+    smtpPort: 1025
+    charset: "UTF-8"
+    defaultSuffix: "@home.arpa"
+    replyToAddress: "jenkins@home.arpa"
 
 credentials:
   system:
