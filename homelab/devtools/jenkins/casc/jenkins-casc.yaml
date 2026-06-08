@@ -1,5 +1,6 @@
 jenkins:
   systemMessage: "Homelab - Jenkins"
+  numExecutors: 0
 
   securityRealm:
     local:
@@ -34,6 +35,7 @@ jenkins:
         name: "maven-agent"
         remoteFS: "/home/jenkins/agent"
         labelString: "maven java"
+        numExecutors: 1
         launcher:
           ssh:
             host: "jenkins-agent-maven"
