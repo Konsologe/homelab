@@ -9,6 +9,6 @@ services:
       - homelab-core-net
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.wiki-go.rule=Host(`wiki.nas.local`)"
+      - "traefik.http.routers.wiki-go.rule=Host(`wiki.nas.local`) || Host(`wiki.home.arpa`)"
       - "traefik.http.routers.wiki-go.entrypoints=web"
       - "traefik.http.services.wiki-go.loadbalancer.server.port=8080"
