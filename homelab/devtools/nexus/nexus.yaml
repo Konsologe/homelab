@@ -1,6 +1,7 @@
 services:
   nexus:
     image: sonatype/nexus3:latest
+    container_name: nexus
     restart: unless-stopped
     volumes:
       - nexus-data:/nexus-data

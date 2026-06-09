@@ -1,18 +1,32 @@
 services:
   portainer:
     image: portainer/portainer-ce:latest
+    container_name: portainer
     restart: unless-stopped
     command: -H unix:///var/run/docker.sock
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - portainer_data:/data
     networks:
-      - homelab-net
+      - homelab-core-net
     labels:
       - "traefik.enable=true"
-      # Make sure to put this also into your hosts file with the IP address of your NAS
-      - "traefik.http.routers.portainer.rule=Host(`portainer.nas.local`) || Host(`portainer.home.arpa`)"
+
+      # HTTP -> HTTPS redirect
+      - "traefik.http.routers.portainer.rule=Host(`portainer.home.arpa`)"
       - "traefik.http.routers.portainer.entrypoints=web"
+      - "traefik.http.routers.portainer.middlewares=portainer-redirect"
+
+      # HTTPS router
+      - "traefik.http.routers.portainer-https.rule=Host(`portainer.home.arpa`)"
+      - "traefik.http.routers.portainer-https.entrypoints=websecure"
+      - "traefik.http.routers.portainer-https.tls=true"
+      - "traefik.http.routers.portainer-https.tls.certresolver=stepca"
+
+      # Redirect Middleware
+      - "traefik.http.middlewares.portainer-redirect.redirectscheme.scheme=https"
+
+      # Portainer internal port
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
 
 volumes:

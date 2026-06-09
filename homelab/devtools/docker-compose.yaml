@@ -3,6 +3,7 @@ name: homelab-devtools
 networks:
   homelab-devtools-net:
     driver: bridge
+    name: homelab-devtools-net
 
 include:
   - path: ./mailpit/mailpit.yaml

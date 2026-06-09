@@ -9,7 +9,7 @@
     - Dozzle:
         href: http://dozzle.home.arpa/
         description: Container monitoring
-        container: core-dozzle-1
+        container: dozzle
     - step-ca:
         href: http://step-ca.home.arpa/
         description: step-ca
@@ -17,11 +17,11 @@
     - Traefik:
         href: http://traefik.home.arpa/
         description: Reverse proxy
-        container: core-traefik-1
+        container: traefik
     - Portainer:
         href: http://portainer.home.arpa/
         description: Container management
-        container: core-portainer-1
+        container: portainer
     - Pi-hole:
         href: http://pihole.home.arpa/admin
         description: Pi-hole
@@ -31,22 +31,22 @@
     - WikiGo:
         href: http://wiki.nas.local/
         description: Homelab Wiki-Go
-        container: core-wiki-go-1
+        container: wiki-go
 
 - DevTools:
     - Gitea:
         href: http://gitea.home.arpa/
         description: Gitea
-        container: devtools-gitea-1
+        container: gitea
     - Jenkins:
         href: http://jenkins.home.arpa/
         description: Jenkins
-        container: devtools-jenkins-lts-1
+        container: jenkins
     - Nexus:
         href: http://nexus.home.arpa/
         description: Nexus
-        container: devtools-nexus-1
+        container: nexus
     - Mailpit:
         href: http://mailpit.home.arpa/
         description: Mailpit
-        container: devtools-mailpit-1
+        container: mailpit

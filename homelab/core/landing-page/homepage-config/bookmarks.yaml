@@ -51,3 +51,6 @@
     - step-ca - step command:
       - description: The 'step' command
         href: https://smallstep.com/docs/step-cli/the-step-command/
+    - jenkins casc:
+      - description: Jenkins configuration as code
+        href: https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/demos/credentials/README.md

@@ -1,6 +1,7 @@
 services:
   traefik:
     image: traefik:latest
+    container_name: traefik
     restart: unless-stopped
     command:
       - "--log.level=INFO"
@@ -25,21 +26,33 @@ services:
       - traefik_letsencrypt:/letsencrypt
       - step_ca_data:/step-ca:ro
     networks:
-      homelab-net:
+      homelab-core-net:
           aliases:
             - dozzle.home.arpa
+            - homelab.home.arpa
+            - portainer.home.arpa
+            - traefik.home.arpa
     depends_on:
       step-ca:
         condition: service_started
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.auth.basicauth.usersfile=/etc/traefik/.htpasswd"
+
       # Traefik Dashboard-Router
-      # Make sure to put this also into your hosts file with the IP address of your NAS
-      - "traefik.http.routers.dashboard.rule=Host(`traefik.nas.local`) || Host(`traefik.home.arpa`)"
-      - "traefik.http.routers.dashboard.entrypoints=web"
-      - "traefik.http.routers.dashboard.service=api@internal"
-      - "traefik.http.routers.dashboard.middlewares=auth"
+      - "traefik.http.routers.traefik-dashboard.rule=Host(`traefik.home.arpa`)"
+      - "traefik.http.routers.traefik-dashboard.entrypoints=web"
+      - "traefik.http.routers.traefik-dashboard.service=api@internal"
+      - "traefik.http.routers.traefik-dashboard.middlewares=traefik-dashboard-redirect"
+
+      # HTTPS router
+      - "traefik.http.routers.traefik-dashboard-https.rule=Host(`traefik.home.arpa`)"
+      - "traefik.http.routers.traefik-dashboard-https.entrypoints=websecure"
+      - "traefik.http.routers.traefik-dashboard-https.service=api@internal"
+      - "traefik.http.routers.traefik-dashboard-https.tls=true"
+      - "traefik.http.routers.traefik-dashboard-https.tls.certresolver=stepca"
+
+      # Redirect Middleware
+      - "traefik.http.middlewares.traefik-dashboard-redirect.redirectscheme.scheme=https"
 
 volumes:
   traefik_letsencrypt:
