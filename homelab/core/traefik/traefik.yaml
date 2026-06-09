@@ -29,6 +29,7 @@ services:
       homelab-core-net:
           aliases:
             - dozzle.home.arpa
+            - homelab.home.arpa
     depends_on:
       step-ca:
         condition: service_started

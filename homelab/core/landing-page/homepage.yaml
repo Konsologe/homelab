@@ -12,6 +12,22 @@ services:
       - homelab-core-net
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.homelab.rule=Host(`homelab.home.arpa`)"
-      - "traefik.http.routers.homelab.entrypoints=web"
-      - "traefik.http.services.homelab.loadbalancer.server.port=3000"
+      
+      # HTTP -> HTTPS redirect
+      - "traefik.http.routers.landing-page.service=landing-page"
+      - "traefik.http.routers.landing-page.rule=Host(`homelab.home.arpa`)"
+      - "traefik.http.routers.landing-page.entrypoints=web"
+      - "traefik.http.routers.landing-page.middlewares=landing-page-redirect"
+
+      # HTTPS router
+      - "traefik.http.routers.landing-page-https.service=landing-page"
+      - "traefik.http.routers.landing-page-https.rule=Host(`homelab.home.arpa`)"
+      - "traefik.http.routers.landing-page-https.entrypoints=websecure"
+      - "traefik.http.routers.landing-page-https.tls=true"
+      - "traefik.http.routers.landing-page-https.tls.certresolver=stepca"
+
+      # Redirect Middleware
+      - "traefik.http.middlewares.landing-page-redirect.redirectscheme.scheme=https"
+
+      # Traefik internal port
+      - "traefik.http.services.landing-page.loadbalancer.server.port=3000"
