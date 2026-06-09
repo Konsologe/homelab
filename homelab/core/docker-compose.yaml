@@ -1,8 +1,9 @@
 name: homelab-core
 
 networks:
-  homelab-net:
+  homelab-core-net:
     driver: bridge
+    name: homelab-core-net
 
 include:
   - path: ./dozzle/dozzle.yaml

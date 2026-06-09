@@ -1,6 +1,7 @@
 services:
   traefik:
     image: traefik:latest
+    container_name: traefik
     restart: unless-stopped
     command:
       - "--log.level=INFO"
@@ -25,7 +26,7 @@ services:
       - traefik_letsencrypt:/letsencrypt
       - step_ca_data:/step-ca:ro
     networks:
-      homelab-net:
+      homelab-core-net:
           aliases:
             - dozzle.home.arpa
     depends_on:
