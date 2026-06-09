@@ -26,5 +26,5 @@ services:
       # Redirect Middleware
       - "traefik.http.middlewares.dozzle-redirect.redirectscheme.scheme=https"
 
-      # Traefik internal port
+      # Dozzle internal port
       - "traefik.http.services.dozzle.loadbalancer.server.port=8080"
