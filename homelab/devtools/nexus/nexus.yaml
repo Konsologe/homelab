@@ -9,8 +9,24 @@ services:
       - homelab-devtools-net
     labels:
       - "traefik.enable=true"
+
+      # HTTP -> HTTPS redirect
       - "traefik.http.routers.nexus.rule=Host(`nexus.home.arpa`)"
       - "traefik.http.routers.nexus.entrypoints=web"
+      - "traefik.http.routers.nexus.middlewares=nexus-redirect"
+      - "traefik.http.routers.nexus.service=nexus"
+
+      # HTTPS router
+      - "traefik.http.routers.nexus-https.rule=Host(`nexus.home.arpa`)"
+      - "traefik.http.routers.nexus-https.entrypoints=websecure"
+      - "traefik.http.routers.nexus-https.tls=true"
+      - "traefik.http.routers.nexus-https.tls.certresolver=stepca"
+      - "traefik.http.routers.nexus-https.service=nexus"
+
+      # Redirect Middleware
+      - "traefik.http.middlewares.nexus-redirect.redirectscheme.scheme=https"
+
+      # Nexus internal port
       - "traefik.http.services.nexus.loadbalancer.server.port=8081"
 
 volumes:

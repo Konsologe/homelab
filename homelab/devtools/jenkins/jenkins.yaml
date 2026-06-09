@@ -21,10 +21,27 @@ services:
         condition: service_completed_successfully
     networks:
       - homelab-devtools-net
+      - homelab-gateway-net
     labels:
       - "traefik.enable=true"
+
+      # HTTP -> HTTPS redirect
       - "traefik.http.routers.jenkins.rule=Host(`jenkins.home.arpa`)"
       - "traefik.http.routers.jenkins.entrypoints=web"
+      - "traefik.http.routers.jenkins.middlewares=jenkins-redirect"
+      - "traefik.http.routers.jenkins.service=jenkins"
+
+      # HTTPS router
+      - "traefik.http.routers.jenkins-https.rule=Host(`jenkins.home.arpa`)"
+      - "traefik.http.routers.jenkins-https.entrypoints=websecure"
+      - "traefik.http.routers.jenkins-https.tls=true"
+      - "traefik.http.routers.jenkins-https.tls.certresolver=stepca"
+      - "traefik.http.routers.jenkins-https.service=jenkins"
+
+      # Redirect Middleware
+      - "traefik.http.middlewares.jenkins-redirect.redirectscheme.scheme=https"
+
+      # jenkins internal port
       - "traefik.http.services.jenkins.loadbalancer.server.port=8080"
 #    dns:
 #      - 192.168.178.250

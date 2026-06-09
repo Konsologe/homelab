@@ -1,11 +1,8 @@
 name: homelab-core
 
-networks:
-  homelab-core-net:
-    driver: bridge
-    name: homelab-core-net
-
 include:
+  - path: ./networks.yaml
+    project_directory: .
   - path: ./dozzle/dozzle.yaml
     project_directory: ./dozzle
   - path: ./traefik/traefik.yaml

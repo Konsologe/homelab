@@ -8,9 +8,27 @@ services:
       - "8025:8025"
     networks:
       - homelab-devtools-net
+      - homelab-gateway-net
     labels:
       - "traefik.enable=true"
-      # Make sure to put this also into your hosts file with the IP address of your NAS
-      - "traefik.http.routers.mailpit.rule=Host(`mailpit.nas.local`) || Host(`mailpit.home.arpa`)"
+
+      - "traefik.docker.network=homelab-gateway-net"
+
+      # HTTP -> HTTPS redirect
+      - "traefik.http.routers.mailpit.rule=Host(`mailpit.home.arpa`)"
       - "traefik.http.routers.mailpit.entrypoints=web"
+      - "traefik.http.routers.mailpit.middlewares=mailpit-redirect"
+      - "traefik.http.routers.mailpit.service=mailpit"
+
+      # HTTPS router
+      - "traefik.http.routers.mailpit-https.rule=Host(`mailpit.home.arpa`)"
+      - "traefik.http.routers.mailpit-https.entrypoints=websecure"
+      - "traefik.http.routers.mailpit-https.tls=true"
+      - "traefik.http.routers.mailpit-https.tls.certresolver=stepca"
+      - "traefik.http.routers.mailpit-https.service=mailpit"
+
+      # Redirect Middleware
+      - "traefik.http.middlewares.mailpit-redirect.redirectscheme.scheme=https"
+
+      # Mailpit internal port
       - "traefik.http.services.mailpit.loadbalancer.server.port=8025"

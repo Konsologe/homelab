@@ -32,11 +32,18 @@ services:
             - homelab.home.arpa
             - portainer.home.arpa
             - traefik.home.arpa
+            - mailpit.home.arpa
+            - gitea.home.arpa
+            - nexus.home.arpa
+            - jenkins.home.arpa
+      homelab-gateway-net:
     depends_on:
       step-ca:
         condition: service_started
     labels:
       - "traefik.enable=true"
+
+      - "traefik.docker.network=homelab-core-net"
 
       # Traefik Dashboard-Router
       - "traefik.http.routers.traefik-dashboard.rule=Host(`traefik.home.arpa`)"

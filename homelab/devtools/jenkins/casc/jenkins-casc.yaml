@@ -45,7 +45,7 @@ jenkins:
 
 unclassified:
   location:
-    url: "http://jenkins.home.arpa/"
+    url: "https://jenkins.home.arpa/"
     adminAddress: "Jenkins <jenkins@home.arpa>"
   mailer:
     smtpHost: "mailpit"

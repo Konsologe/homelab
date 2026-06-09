@@ -21,6 +21,9 @@ services:
 
     labels:
       - "traefik.enable=true"
+
+      - "traefik.docker.network=homelab-core-net"
+
       - "traefik.http.routers.step-ca.rule=Host(`step-ca.home.arpa`)"
       - "traefik.http.routers.step-ca.entrypoints=web"
       - "traefik.http.services.step-ca.loadbalancer.server.port=9000"

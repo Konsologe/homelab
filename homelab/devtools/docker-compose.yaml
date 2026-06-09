@@ -1,11 +1,8 @@
 name: homelab-devtools
 
-networks:
-  homelab-devtools-net:
-    driver: bridge
-    name: homelab-devtools-net
-
 include:
+  - path: ./networks.yaml
+    project_directory: .
   - path: ./mailpit/mailpit.yaml
     project_directory: ./mailpit
   - path: ./gitea/gitea.yaml
