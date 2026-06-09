@@ -30,6 +30,7 @@ services:
           aliases:
             - dozzle.home.arpa
             - homelab.home.arpa
+            - portainer.home.arpa
     depends_on:
       step-ca:
         condition: service_started

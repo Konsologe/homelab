@@ -11,8 +11,22 @@ services:
       - homelab-core-net
     labels:
       - "traefik.enable=true"
+
+      # HTTP -> HTTPS redirect
       - "traefik.http.routers.portainer.rule=Host(`portainer.home.arpa`)"
       - "traefik.http.routers.portainer.entrypoints=web"
+      - "traefik.http.routers.portainer.middlewares=portainer-redirect"
+
+      # HTTPS router
+      - "traefik.http.routers.portainer-https.rule=Host(`portainer.home.arpa`)"
+      - "traefik.http.routers.portainer-https.entrypoints=websecure"
+      - "traefik.http.routers.portainer-https.tls=true"
+      - "traefik.http.routers.portainer-https.tls.certresolver=stepca"
+
+      # Redirect Middleware
+      - "traefik.http.middlewares.portainer-redirect.redirectscheme.scheme=https"
+
+      # Portainer internal port
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
 
 volumes:
