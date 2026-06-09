@@ -1,18 +1,53 @@
 services:
-  jenkins-lts:
-    build: ./jenkins
+  jenkins:
+    build: .
     restart: unless-stopped
+    container_name: jenkins
     ports:
       - "50000:50000"
     environment:
       JENKINS_ADMIN_PASSWORD: ${JENKINS_ADMIN_PASSWORD}
+      JENKINS_DEV_PASSWORD: ${JENKINS_DEV_PASSWORD}
+      JENKINS_SSH_KEY_FILE_PATH: ${JENKINS_SSH_KEY_FILE_PATH}
+      GITEA_DEV_USER: ${GITEA_DEV_USER}
+      GITEA_DEV_PASSWORD: ${GITEA_DEV_PASSWORD}
+      NEXUS_DEPLOY_USER: ${NEXUS_DEPLOY_USER}
+      NEXUS_DEPLOY_PASSWORD: ${NEXUS_DEPLOY_PASSWORD}
     volumes:
       - jenkins_home:/var/jenkins_home
+      - ./keys/jenkins_ssh_key:/run/secrets/jenkins_ssh_key:ro
+    depends_on:
+      jenkins-ssh-keygen:
+        condition: service_completed_successfully
+    networks:
+      - homelab-devtools-net
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.jenkins.rule=Host(`jenkins.home.arpa`)"
       - "traefik.http.routers.jenkins.entrypoints=web"
       - "traefik.http.services.jenkins.loadbalancer.server.port=8080"
+#    dns:
+#      - 192.168.178.250
+
+  jenkins-ssh-keygen:
+    image: alpine:latest
+    container_name: jenkins-ssh-keygen
+    working_dir: /keys
+    volumes:
+      - ./keys:/keys
+    command:
+      - sh
+      - -c
+      - |
+        apk add --no-cache openssh-keygen >/dev/null
+        if [ ! -f jenkins_ssh_key ]; then
+          ssh-keygen -t ed25519 -f jenkins_ssh_key -N "" -C "jenkins ssh key"
+          chmod 600 jenkins_ssh_key
+          chmod 644 jenkins_ssh_key.pub
+        else
+          echo "Jenkins SSH key already exists. Nothing to do."
+        fi
+    restart: "no"
 
 volumes:
   jenkins_home:
