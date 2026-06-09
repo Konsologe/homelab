@@ -8,3 +8,7 @@ matrix-auth
 pipeline-stage-view
 ssh-slaves
 mailer
+gitea
+branch-api
+cloudbees-folder
+generic-webhook-trigger
