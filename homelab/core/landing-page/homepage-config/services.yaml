@@ -50,3 +50,9 @@
         href: http://mailpit.home.arpa/
         description: Mailpit
         container: mailpit
+
+- Apps:
+    - Tomcat11:
+        href: http://tomcat11.home.arpa/
+        description: Tomcat11
+        container: tomcat11

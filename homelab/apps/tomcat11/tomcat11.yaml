@@ -1,0 +1,36 @@
+services:
+  tomcat11:
+    build: .
+    container_name: tomcat11
+#    restart: unless-stopped
+    environment:
+      TOMCAT_USER_ID: 1000
+      TOMCAT_GROUP_ID: 1000
+    volumes:
+      - ./ROOT:/usr/local/tomcat/webapps/ROOT
+    networks:
+      - homelab-apps-net
+      - homelab-gateway-net
+    labels:
+      - "traefik.enable=true"
+      
+      - "traefik.docker.network=homelab-gateway-net"
+
+      # HTTP -> HTTPS redirect
+      - "traefik.http.routers.tomcat11.rule=Host(`tomcat11.home.arpa`)"
+      - "traefik.http.routers.tomcat11.entrypoints=web"
+      - "traefik.http.routers.tomcat11.middlewares=tomcat11-redirect"
+      - "traefik.http.routers.tomcat11.service=tomcat11"
+
+      # HTTPS router
+      - "traefik.http.routers.tomcat11-https.rule=Host(`tomcat11.home.arpa`)"
+      - "traefik.http.routers.tomcat11-https.entrypoints=websecure"
+      - "traefik.http.routers.tomcat11-https.tls=true"
+      - "traefik.http.routers.tomcat11-https.tls.certresolver=stepca"
+      - "traefik.http.routers.tomcat11-https.service=tomcat11"
+
+      # Redirect Middleware
+      - "traefik.http.middlewares.tomcat11-redirect.redirectscheme.scheme=https"
+
+      # tomcat11 internal port
+      - "traefik.http.services.tomcat11.loadbalancer.server.port=8080"

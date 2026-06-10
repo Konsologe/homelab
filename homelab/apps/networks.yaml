@@ -1,0 +1,10 @@
+# Network definition for project: apps
+
+networks:
+  homelab-apps-net:
+    driver: bridge
+    name: homelab-apps-net
+
+  homelab-gateway-net:
+    name: homelab-gateway-net
+    external: true

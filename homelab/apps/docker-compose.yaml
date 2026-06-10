@@ -1,0 +1,7 @@
+name: homelab-apps
+
+include:
+  - path: ./networks.yaml
+    project_directory: .
+  - path: ./tomcat11/tomcat11.yaml
+    project_directory: ./tomcat11

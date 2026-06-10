@@ -54,3 +54,7 @@
     - jenkins casc:
       - description: Jenkins configuration as code
         href: https://github.com/jenkinsci/configuration-as-code-plugin/blob/master/demos/credentials/README.md
+    - Traefik - docker configuration reference:
+      - description: Traefik
+        href: https://doc.traefik.io/traefik/v2.0/reference/dynamic-configuration/docker/
+
