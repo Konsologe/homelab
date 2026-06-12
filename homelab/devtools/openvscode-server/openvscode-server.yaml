@@ -1,0 +1,37 @@
+services:
+  openvscode:
+    build: .
+    container_name: openvscode
+    restart: unless-stopped
+    environment:
+      - PUID=1001
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - CONNECTION_TOKEN=dein-langes-token
+    volumes:
+      - ./config:/config
+    networks:
+      - homelab-devtools-net
+      - homelab-gateway-net
+    labels:
+      - "traefik.enable=true"
+
+      - "traefik.docker.network=homelab-gateway-net"
+
+      # HTTP -> HTTPS redirect
+#      - "traefik.http.routers.openvscode.rule=Host(`openvscode.home.arpa`)"
+#      - "traefik.http.routers.openvscode.entrypoints=web"
+#      - "traefik.http.routers.openvscode.middlewares=openvscode-redirect"
+#      - "traefik.http.routers.openvscode.service=openvscode"
+
+      # HTTPS router
+      - "traefik.http.routers.openvscode-https.rule=Host(`openvscode.home.arpa`)"
+      - "traefik.http.routers.openvscode-https.entrypoints=websecure"
+      - "traefik.http.routers.openvscode-https.tls=true"
+      - "traefik.http.routers.openvscode-https.tls.certresolver=stepca"
+      - "traefik.http.routers.openvscode-https.service=openvscode"
+
+      # Redirect Middleware
+#      - "traefik.http.middlewares.openvscode-redirect.redirectscheme.scheme=https"
+
+      - "traefik.http.services.openvscode.loadbalancer.server.port=3000"

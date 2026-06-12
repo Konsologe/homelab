@@ -33,6 +33,7 @@ services:
             - portainer.home.arpa
             - traefik.home.arpa
             - mailpit.home.arpa
+            - openvscode.home.arpa
             - gitea.home.arpa
             - nexus.home.arpa
             - jenkins.home.arpa

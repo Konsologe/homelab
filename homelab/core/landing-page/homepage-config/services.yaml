@@ -34,6 +34,10 @@
         container: wiki-go
 
 - DevTools:
+    - OpenVSCode:
+        href: https://openvscode.home.arpa/?tkn=dein-langes-token
+        description: OpenVSCode-Server
+        container: openvscode
     - Gitea:
         href: http://gitea.home.arpa/
         description: Gitea

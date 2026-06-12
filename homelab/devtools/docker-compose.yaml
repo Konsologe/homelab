@@ -13,3 +13,5 @@ include:
     project_directory: ./jenkins
   - path: ./jenkins-agent-maven/jenkins-agent-maven.yaml
     project_directory: ./jenkins-agent-maven
+  - path: ./openvscode-server/openvscode-server.yaml
+    project_directory: ./openvscode-server
