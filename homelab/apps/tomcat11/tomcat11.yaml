@@ -2,7 +2,7 @@ services:
   tomcat11:
     build: .
     container_name: tomcat11
-#    restart: unless-stopped
+    restart: unless-stopped
     environment:
       TOMCAT_USER_ID: 1000
       TOMCAT_GROUP_ID: 1000
