@@ -1,0 +1,36 @@
+services:
+  websphere-liberty-java8:
+    build: .
+    container_name: websphere-liberty-java8
+    restart: unless-stopped
+    ports:
+      # Debug Port
+      - "7777:7777"
+    environment:
+      WLP_DEBUG_REMOTE: "y"
+    networks:
+      - homelab-apps-net
+      - homelab-gateway-net
+    labels:
+      - "traefik.enable=true"
+      
+      - "traefik.docker.network=homelab-gateway-net"
+
+      # HTTP -> HTTPS redirect
+      - "traefik.http.routers.websphere-liberty-java8.rule=Host(`websphere-liberty-java8.home.arpa`)"
+      - "traefik.http.routers.websphere-liberty-java8.entrypoints=web"
+      - "traefik.http.routers.websphere-liberty-java8.middlewares=websphere-liberty-java8-redirect"
+      - "traefik.http.routers.websphere-liberty-java8.service=websphere-liberty-java8"
+
+      # HTTPS router
+      - "traefik.http.routers.websphere-liberty-java8-https.rule=Host(`websphere-liberty-java8.home.arpa`)"
+      - "traefik.http.routers.websphere-liberty-java8-https.entrypoints=websecure"
+      - "traefik.http.routers.websphere-liberty-java8-https.tls=true"
+      - "traefik.http.routers.websphere-liberty-java8-https.tls.certresolver=stepca"
+      - "traefik.http.routers.websphere-liberty-java8-https.service=websphere-liberty-java8"
+
+      # Redirect Middleware
+      - "traefik.http.middlewares.websphere-liberty-java8-redirect.redirectscheme.scheme=https"
+
+      # websphere-liberty-java8 internal port
+      - "traefik.http.services.websphere-liberty-java8.loadbalancer.server.port=9080"

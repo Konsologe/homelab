@@ -25,7 +25,7 @@
     - Pi-hole:
         href: http://pihole.home.arpa/admin
         description: Pi-hole
-        container: pihole-pihole-1
+        container: pihole
 
 - KnowledgeBase:
     - WikiGo:
@@ -60,3 +60,11 @@
         href: http://tomcat11.home.arpa/
         description: Tomcat11
         container: tomcat11
+    - Websphere Liberty - Java8:
+        href: https://websphere-liberty-java8.home.arpa/
+        description: Websphere Liberty - Java8
+        container: websphere-liberty-java8
+    - Websphere Liberty - Java8 - AdminCenter:
+        href: https://websphere-liberty-java8.home.arpa/adminCenter/
+        description: Websphere Liberty - Java8 - AdminCenter
+        container: websphere-liberty-java8

@@ -38,6 +38,8 @@ services:
             - nexus.home.arpa
             - jenkins.home.arpa
             - tomcat11.home.arpa
+            - websphere-liberty.home.arpa
+            - websphere-liberty-java8.home.arpa
       homelab-gateway-net:
     depends_on:
       step-ca:
