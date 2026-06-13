@@ -1,6 +1,7 @@
 services:
   pihole:
     build: .
+    container_name: pihole
     hostname: pihole
     restart: unless-stopped
     environment:
