@@ -39,6 +39,7 @@ services:
             - jenkins.home.arpa
             - tomcat11.home.arpa
             - neo4j.home.arpa
+            - neodash.home.arpa
             - websphere-liberty.home.arpa
             - websphere-liberty-java8.home.arpa
       homelab-gateway-net:

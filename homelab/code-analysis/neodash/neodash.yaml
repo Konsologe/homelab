@@ -1,0 +1,25 @@
+services:
+  neodash:
+    image: neo4jlabs/neodash:latest
+    container_name: neodash
+    restart: unless-stopped
+
+    networks:
+      - homelab-gateway-net
+      - homelab-code-analysis-net
+
+    labels:
+      - "traefik.enable=true"
+
+      - "traefik.http.routers.neodash.rule=Host(`neodash.home.arpa`)"
+      - "traefik.http.routers.neodash.entrypoints=web"
+#      - "traefik.http.routers.neodash.middlewares=neodash-redirect"
+
+#      - "traefik.http.routers.neodash-https.rule=Host(`neodash.home.arpa`)"
+#      - "traefik.http.routers.neodash-https.entrypoints=websecure"
+#      - "traefik.http.routers.neodash-https.tls=true"
+#      - "traefik.http.routers.neodash-https.tls.certresolver=stepca"
+
+      - "traefik.http.services.neodash.loadbalancer.server.port=5005"
+
+#      - "traefik.http.middlewares.neodash-redirect.redirectscheme.scheme=https"
