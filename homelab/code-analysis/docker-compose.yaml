@@ -1,0 +1,7 @@
+name: homelab-code-analysis
+
+include:
+  - path: ./networks.yaml
+    project_directory: .
+  - path: ./neo4j/neo4j.yaml
+    project_directory: ./neo4j

@@ -55,6 +55,12 @@
         description: Mailpit
         container: mailpit
 
+- Code-Analysis:
+    - Neo4J:
+        href: http://neo4j.home.arpa/
+        description: Neo4J
+        container: neo4j
+
 - Apps:
     - Tomcat11:
         href: http://tomcat11.home.arpa/

@@ -1,0 +1,10 @@
+# Network definition for project: code-analysis
+
+networks:
+  homelab-code-analysis-net:
+    driver: bridge
+    name: homelab-code-analysis-net
+
+  homelab-gateway-net:
+    name: homelab-gateway-net
+    external: true
