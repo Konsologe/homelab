@@ -3,10 +3,13 @@ services:
     build: .
     container_name: jenkins-agent-maven
     user: root
+    group_add:
+      - "121"
     environment:
       JENKINS_AGENT_SSH_PUBKEY: "${JENKINS_SSH_PUBLIC_KEY}"
     volumes:
       - jenkins_agent_maven_home:/home/jenkins/agent
+      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - homelab-devtools-net
 #    dns:

@@ -16,6 +16,9 @@ services:
     volumes:
       - jenkins_home:/var/jenkins_home
       - ./keys/jenkins_ssh_key:/run/secrets/jenkins_ssh_key:ro
+      - ./jenkins.yaml:/var/jenkins_home/casc_configs/jenkins.yaml:ro
+      - ./init.groovy.d:/usr/share/jenkins/ref/init.groovy.d:ro
+      - ./job-definitions:/var/jenkins_home/job-definitions:ro
     depends_on:
       jenkins-ssh-keygen:
         condition: service_completed_successfully

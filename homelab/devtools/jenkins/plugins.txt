@@ -12,3 +12,4 @@ gitea
 branch-api
 cloudbees-folder
 generic-webhook-trigger
+ssh-agent
