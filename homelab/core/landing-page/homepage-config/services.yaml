@@ -26,8 +26,6 @@
         href: http://pihole.home.arpa/admin
         description: Pi-hole
         container: pihole
-
-- KnowledgeBase:
     - WikiGo:
         href: http://wiki.nas.local/
         description: Homelab Wiki-Go

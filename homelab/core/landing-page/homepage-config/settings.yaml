@@ -11,11 +11,11 @@ disableIndexing: true
 layout:
   Infrastructure:
     tab: Infrastructure
-  KnowledgeBase:
-    tab: Infrastructure
   DevTools:
     tab: Infrastructure
   Apps:
+    tab: Infrastructure
+  Code-Analysis:
     tab: Infrastructure
   MyTools:
     tab: MyTools
