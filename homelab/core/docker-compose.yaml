@@ -15,3 +15,5 @@ include:
     project_directory: ./wiki-go
   - path: ./step-ca/step-ca.yaml
     project_directory: ./step-ca
+  - path: ./drawio/drawio.yaml
+    project_directory: ./drawio

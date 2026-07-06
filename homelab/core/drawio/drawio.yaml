@@ -1,0 +1,27 @@
+services:
+  drawio:
+    image: jgraph/drawio:latest
+    container_name: drawio
+    restart: unless-stopped
+
+    networks:
+      - homelab-core-net
+      - homelab-gateway-net
+
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=homelab-gateway-net"
+
+      - "traefik.http.routers.drawio.rule=Host(`drawio.home.arpa`)"
+      - "traefik.http.routers.drawio.entrypoints=web"
+      - "traefik.http.routers.drawio.middlewares=drawio-redirect"
+      - "traefik.http.routers.drawio.service=drawio"
+
+      - "traefik.http.routers.drawio-https.rule=Host(`drawio.home.arpa`)"
+      - "traefik.http.routers.drawio-https.entrypoints=websecure"
+      - "traefik.http.routers.drawio-https.tls=true"
+      - "traefik.http.routers.drawio-https.tls.certresolver=stepca"
+      - "traefik.http.routers.drawio-https.service=drawio"
+
+      - "traefik.http.middlewares.drawio-redirect.redirectscheme.scheme=https"
+      - "traefik.http.services.drawio.loadbalancer.server.port=8080"

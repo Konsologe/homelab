@@ -4,8 +4,8 @@ services:
     container_name: gitea
     restart: unless-stopped
     environment:
-      USER_UID: 1000
-      USER_GID: 1000
+      USER_UID: ${UID}
+      USER_GID: ${GID}
 
       GITEA__database__DB_TYPE: sqlite3
       GITEA__database__PATH: /data/gitea/gitea.db
