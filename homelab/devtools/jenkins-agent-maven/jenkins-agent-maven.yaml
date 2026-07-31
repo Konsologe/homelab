@@ -2,6 +2,7 @@ services:
   jenkins-agent-maven:
     build: .
     container_name: jenkins-agent-maven
+    restart: unless-stopped
     user: root
     group_add:
       - "121"
@@ -9,7 +10,7 @@ services:
       JENKINS_AGENT_SSH_PUBKEY: "${JENKINS_SSH_PUBLIC_KEY}"
     volumes:
       - jenkins_agent_maven_home:/home/jenkins/agent
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - homelab-devtools-net
 #    dns:

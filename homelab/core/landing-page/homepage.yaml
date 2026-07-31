@@ -2,6 +2,7 @@ services:
   homelab:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: landing-page
+    restart: unless-stopped
     volumes:
       - ./homepage-config:/app/config
       - ./homepage-backgrounds:/app/public/images

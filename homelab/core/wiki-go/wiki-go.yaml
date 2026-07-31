@@ -2,6 +2,7 @@ services:
   wiki-go:
     image: leomoonstudios/wiki-go
     container_name: wiki-go
+    restart: unless-stopped
     volumes:
       - ./data:/wiki/data:rw
     user: 1000:10
