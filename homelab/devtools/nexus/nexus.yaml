@@ -7,6 +7,7 @@ services:
       - nexus-data:/nexus-data
     networks:
       - homelab-devtools-net
+      - homelab-gateway-net
     ports:
       - "5000:5000"
     labels:
