@@ -1,6 +1,6 @@
 services:
   tomcat11:
-    build: .
+    image: tomcat:11.0-jre25-temurin-noble
     container_name: tomcat11
     restart: unless-stopped
     environment:
