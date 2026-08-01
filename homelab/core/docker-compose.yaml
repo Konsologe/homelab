@@ -7,6 +7,8 @@ include:
     project_directory: ./dozzle
   - path: ./traefik/traefik.yaml
     project_directory: ./traefik
+  - path: ./traefik/traefik-aliases.yaml
+    project_directory: ./traefik
   - path: ./portainer/portainer.yaml
     project_directory: ./portainer
   - path: ./landing-page/homepage.yaml

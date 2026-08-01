@@ -27,23 +27,6 @@ services:
       - step_ca_data:/step-ca:ro
     networks:
       homelab-core-net:
-          aliases:
-            - dozzle.home.arpa
-            - homelab.home.arpa
-            - portainer.home.arpa
-            - traefik.home.arpa
-            - mailpit.home.arpa
-            - openvscode.home.arpa
-            - theia.home.arpa
-            - gitea.home.arpa
-            - nexus.home.arpa
-            - jenkins.home.arpa
-            - tomcat11.home.arpa
-            - neo4j.home.arpa
-            - neodash.home.arpa
-            - drawio.home.arpa
-            - websphere-liberty.home.arpa
-            - websphere-liberty-java8.home.arpa
       homelab-gateway-net:
     depends_on:
       step-ca:

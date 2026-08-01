@@ -12,6 +12,7 @@ services:
       - "5000:5000"
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=homelab-gateway-net"
 
       # HTTP -> HTTPS redirect
       - "traefik.http.routers.nexus.rule=Host(`nexus.home.arpa`)"

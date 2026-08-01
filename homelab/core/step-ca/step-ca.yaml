@@ -18,6 +18,9 @@ services:
       - step_ca_data:/home/step
     networks:
       - homelab-core-net
+      - homelab-gateway-net
+    dns:
+      - 192.168.178.250   # Pi-hole
 
     labels:
       - "traefik.enable=true"

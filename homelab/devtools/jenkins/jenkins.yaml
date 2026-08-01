@@ -27,6 +27,7 @@ services:
       - homelab-gateway-net
     labels:
       - "traefik.enable=true"
+      - "traefik.docker.network=homelab-gateway-net"
 
       # HTTP -> HTTPS redirect
       - "traefik.http.routers.jenkins.rule=Host(`jenkins.home.arpa`)"
@@ -46,8 +47,6 @@ services:
 
       # jenkins internal port
       - "traefik.http.services.jenkins.loadbalancer.server.port=8080"
-#    dns:
-#      - 192.168.178.250
 
   jenkins-ssh-keygen:
     image: alpine:latest

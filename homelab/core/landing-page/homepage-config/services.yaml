@@ -7,11 +7,11 @@
         href: http://nas.home.arpa:9999
         description: UGREEN NAS DXP2800
     - Dozzle:
-        href: http://dozzle.home.arpa/
+        href: https://dozzle.home.arpa/
         description: Container monitoring
         container: dozzle
     - step-ca:
-        href: http://step-ca.home.arpa/
+        href: https://step-ca.home.arpa/
         description: step-ca
         container: step-ca
     - Traefik:
@@ -23,11 +23,11 @@
         description: Container management
         container: portainer
     - Pi-hole:
-        href: http://pihole.home.arpa/admin
+        href: https://pihole.home.arpa/admin
         description: Pi-hole
         container: pihole
     - WikiGo:
-        href: http://wiki.nas.local/
+        href: https://wiki.home.arpa/
         description: Homelab Wiki-Go
         container: wiki-go
 
@@ -45,11 +45,11 @@
         description: Jenkins
         container: jenkins
     - Nexus:
-        href: http://nexus.home.arpa/
+        href: https://nexus.home.arpa/
         description: Nexus
         container: nexus
     - Mailpit:
-        href: http://mailpit.home.arpa/
+        href: https://mailpit.home.arpa/
         description: Mailpit
         container: mailpit
 
