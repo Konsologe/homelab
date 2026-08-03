@@ -13,8 +13,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - homelab-devtools-net
-#    dns:
-#      - 192.168.178.250
 
 volumes:
   jenkins_agent_maven_home:
