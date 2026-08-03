@@ -1,0 +1,17 @@
+name: homelab-core
+
+include:
+  - path: ./networks.yaml
+    project_directory: .
+  - path: ../../services/operations/dozzle/dozzle.yaml
+    project_directory: ../../services/operations/dozzle
+  - path: ../../services/infrastructure/step-ca/step-ca.yaml
+    project_directory: ../../services/infrastructure/step-ca
+  - path: ../../services/infrastructure/traefik/traefik.yaml
+    project_directory: ../../services/infrastructure/traefik
+  - path: ../../services/infrastructure/traefik/traefik-aliases.yaml
+    project_directory: ../../services/infrastructure/traefik
+  - path: ../../services/operations/portainer/portainer.yaml
+    project_directory: ../../services/operations/portainer
+  - path: ../../services/operations/landing-page/homepage.yaml
+    project_directory: ../../services/operations/landing-page

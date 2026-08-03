@@ -1,0 +1,10 @@
+# Network definition for project: core
+
+networks:
+  homelab-core-net:
+    driver: bridge
+    name: homelab-core-net
+
+  homelab-gateway-net:
+    driver: bridge
+    name: homelab-gateway-net

@@ -1,0 +1,10 @@
+# Network definition for project: devtools
+
+networks:
+  homelab-devtools-net:
+    driver: bridge
+    name: homelab-devtools-net
+
+  homelab-gateway-net:
+    name: homelab-gateway-net
+    external: true

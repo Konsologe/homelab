@@ -1,0 +1,5 @@
+name: homelab-pihole
+
+include:
+  - path: ../../services/dns/pihole/pihole.yaml
+    project_directory: ../../services/dns/pihole

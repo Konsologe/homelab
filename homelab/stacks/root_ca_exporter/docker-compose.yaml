@@ -1,0 +1,5 @@
+name: homelab-root_ca_exporter
+
+include:
+  - path: ../../services/infrastructure/root_ca_exporter/root_ca_exporter.yaml
+    project_directory: ../../services/infrastructure/root_ca_exporter
