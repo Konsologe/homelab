@@ -1,9 +1,0 @@
-name: homelab-apps
-
-include:
-  - path: ./networks.yaml
-    project_directory: .
-  - path: ./tomcat11/tomcat11.yaml
-    project_directory: ./tomcat11
-  - path: ./websphere_liberty_java8/websphere_liberty_java8.yaml
-    project_directory: ./websphere_liberty_java8
