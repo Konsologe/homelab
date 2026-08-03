@@ -9,7 +9,7 @@ services:
     volumes:
       - ./ROOT:/usr/local/tomcat/webapps/ROOT
     networks:
-      - homelab-apps-net
+      - homelab-appservers-net
       - homelab-gateway-net
     labels:
       - "traefik.enable=true"

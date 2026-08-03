@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
 
     networks:
-      - homelab-core-net
+      - homelab-devtools-net
       - homelab-gateway-net
 
     labels:

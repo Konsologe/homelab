@@ -7,7 +7,7 @@ services:
       - ./data:/wiki/data:rw
     user: 1000:10
     networks:
-      - homelab-core-net
+      - homelab-devtools-net
       - homelab-gateway-net
     labels:
       - "traefik.enable=true"

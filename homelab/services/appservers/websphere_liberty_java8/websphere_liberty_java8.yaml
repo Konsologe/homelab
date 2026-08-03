@@ -9,7 +9,7 @@ services:
     environment:
       WLP_DEBUG_REMOTE: "y"
     networks:
-      - homelab-apps-net
+      - homelab-appservers-net
       - homelab-gateway-net
     labels:
       - "traefik.enable=true"
