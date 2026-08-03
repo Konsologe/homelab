@@ -9,13 +9,14 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--api.dashboard=true"
       - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"      
+      - "--providers.docker.exposedbydefault=false"
       - "--certificatesresolvers.stepca.acme.caserver=https://step-ca:9000/acme/acme/directory"
       - "--certificatesresolvers.stepca.acme.email=admin@home.arpa"
       - "--certificatesresolvers.stepca.acme.storage=/letsencrypt/stepca-acme.json"
       - "--certificatesresolvers.stepca.acme.httpchallenge=true"
       - "--certificatesresolvers.stepca.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.stepca.acme.cacertificates=/step-ca/certs/root_ca.crt"
+      - "--certificatesresolvers.stepca.acme.certificatesduration=24"
 
     ports:
       - "80:80"
