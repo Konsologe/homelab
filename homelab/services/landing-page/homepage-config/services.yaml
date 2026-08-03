@@ -30,6 +30,10 @@
         href: https://wiki.home.arpa/
         description: Homelab Wiki-Go
         container: wiki-go
+    - draw.io:
+        href: https://drawio.home.arpa/
+        description: draw.io
+        container: drawio
 
 - DevTools:
     - OpenVSCode:
