@@ -28,7 +28,7 @@ services:
       GITEA_DEV_PASSWORD: ${GITEA_DEV_PASSWORD}
       GITEA_DEV_EMAIL: ${GITEA_DEV_EMAIL}
     volumes:
-      - gitea-data:/data
+      - ${DATA_ROOT:?DATA_ROOT must be set}/gitea/gitea-data:/data
     networks:
       - homelab-devtools-net
       - homelab-gateway-net

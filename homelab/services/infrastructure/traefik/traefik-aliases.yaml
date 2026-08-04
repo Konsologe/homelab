@@ -20,3 +20,4 @@ services:
          - websphere-liberty.home.arpa
          - websphere-liberty-java8.home.arpa
          - wiki.home.arpa
+         - beszel.home.arpa

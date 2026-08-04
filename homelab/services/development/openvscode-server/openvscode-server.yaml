@@ -9,7 +9,7 @@ services:
       - TZ=Europe/Berlin
       - CONNECTION_TOKEN=dein-langes-token
     volumes:
-      - ./config:/config
+      - ${DATA_ROOT:?DATA_ROOT must be set}/openvscode-server/config:/config
     networks:
       - homelab-devtools-net
       - homelab-gateway-net

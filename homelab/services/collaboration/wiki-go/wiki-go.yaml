@@ -4,7 +4,7 @@ services:
     container_name: wiki-go
     restart: unless-stopped
     volumes:
-      - ./data:/wiki/data:rw
+      - ${DATA_ROOT:?DATA_ROOT must be set}/wiki-go/data:/wiki/data:rw
     user: 1000:10
     networks:
       - homelab-devtools-net

@@ -4,8 +4,8 @@ services:
     container_name: landing-page
     restart: unless-stopped
     volumes:
-      - ./homepage-config:/app/config
-      - ./homepage-backgrounds:/app/public/images
+      - ${DATA_ROOT:?DATA_ROOT must be set}/homepage/homepage-config:/app/config
+      - ${DATA_ROOT:?DATA_ROOT must be set}/homepage/homepage-backgrounds:/app/public/images
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       HOMEPAGE_ALLOWED_HOSTS: homelab.home.arpa
