@@ -21,3 +21,4 @@ services:
          - websphere-liberty-java8.home.arpa
          - wiki.home.arpa
          - beszel.home.arpa
+         - homeassistant.home.arpa

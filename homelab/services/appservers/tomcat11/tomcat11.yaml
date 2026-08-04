@@ -7,7 +7,7 @@ services:
       TOMCAT_USER_ID: 1000
       TOMCAT_GROUP_ID: 1000
     volumes:
-      - ./ROOT:/usr/local/tomcat/webapps/ROOT
+      - ${DATA_ROOT:?DATA_ROOT must be set}/tomcat11/ROOT:/usr/local/tomcat/webapps/ROOT
     networks:
       - homelab-appservers-net
       - homelab-gateway-net
