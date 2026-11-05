@@ -6,13 +6,13 @@ services:
     volumes:
       - nexus-data:/nexus-data
     networks:
-      - homelab-devtools-net
-      - homelab-gateway-net
+      - network-zone-a
+      - proxy-net
     ports:
       - "5000:5000"
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=homelab-gateway-net"
+      - "traefik.docker.network=proxy-net"
 
       # HTTP -> HTTPS redirect
       - "traefik.http.routers.nexus.rule=Host(`nexus.home.arpa`)"

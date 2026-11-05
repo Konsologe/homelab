@@ -1,0 +1,44 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.6.4
+    container_name: keycloak
+    restart: unless-stopped
+    command: start-dev
+    user: "1000:0"
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN_USER}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD}
+      KC_HOSTNAME: keycloak.home.arpa
+      KC_HTTP_ENABLED: "true"
+      KC_PROXY_HEADERS: xforwarded
+    volumes:
+      - keycloak-data:/opt/keycloak/data
+    networks:
+      - stack-net
+      - proxy-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=homelab-gateway-net"
+
+      # HTTP -> HTTPS redirect
+      - "traefik.http.routers.keycloak.rule=Host(`keycloak.home.arpa`)"
+      - "traefik.http.routers.keycloak.entrypoints=web"
+      - "traefik.http.routers.keycloak.middlewares=keycloak-redirect"
+      - "traefik.http.routers.keycloak.service=keycloak"
+
+      # HTTPS router
+      - "traefik.http.routers.keycloak-https.rule=Host(`keycloak.home.arpa`)"
+      - "traefik.http.routers.keycloak-https.entrypoints=websecure"
+      - "traefik.http.routers.keycloak-https.tls=true"
+      - "traefik.http.routers.keycloak-https.tls.certresolver=stepca"
+      - "traefik.http.routers.keycloak-https.service=keycloak"
+
+      # Redirect Middleware
+      - "traefik.http.middlewares.keycloak-redirect.redirectscheme.scheme=https"
+
+      # Keycloak internal port
+      - "traefik.http.services.keycloak.loadbalancer.server.port=8080"
+
+volumes:
+  keycloak-data:
+    name: keycloak-data

@@ -1,10 +1,11 @@
 # Network definition for project: devtools
 
 networks:
-  homelab-devtools-net:
+  network-zone-a:
     driver: bridge
-    name: homelab-devtools-net
+    name: network-zone-a
+    external: true
 
-  homelab-gateway-net:
-    name: homelab-gateway-net
+  proxy-net:
+    name: proxy-net
     external: true

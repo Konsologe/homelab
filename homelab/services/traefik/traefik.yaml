@@ -17,7 +17,6 @@ services:
       - "--certificatesresolvers.stepca.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.stepca.acme.cacertificates=/step-ca/certs/root_ca.crt"
       - "--certificatesresolvers.stepca.acme.certificatesduration=24"
-
     ports:
       - "80:80"
       - "443:443"
@@ -27,8 +26,8 @@ services:
       - traefik_letsencrypt:/letsencrypt
       - step_ca_data:/step-ca:ro
     networks:
-      homelab-core-net:
-      homelab-gateway-net:
+      - network-zone-a
+      - proxy-net
     depends_on:
       step-ca:
         condition: service_started

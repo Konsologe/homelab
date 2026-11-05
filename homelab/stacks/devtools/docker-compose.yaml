@@ -3,13 +3,13 @@ name: homelab-devtools
 include:
   - path: ./networks.yaml
     project_directory: .
-  - path: ../../services/development/mailpit/mailpit.yaml
-    project_directory: ../../services/development/mailpit/mailpit
-  - path: ../../services/development/gitea/gitea.yaml
-    project_directory: ../../services/development/gitea
-  - path: ../../services/cicd/nexus/nexus.yaml
-    project_directory: ../../services/cicd/nexus
-  - path: ../../services/collaboration/wiki-go/wiki-go.yaml
-    project_directory: ../../services/collaboration/wiki-go
-  - path: ../../services/collaboration/drawio/drawio.yaml
-    project_directory: ../../services/collaboration/drawio
+  - path: ../../services/mailpit/mailpit.yaml
+    project_directory: ../../services/mailpit/mailpit
+  - path: ../../services/gitea/gitea.yaml
+    project_directory: ../../services/gitea
+  - path: ../../services/nexus/nexus.yaml
+    project_directory: ../../services/nexus
+  - path: ../../services/wiki-go/wiki-go.yaml
+    project_directory: ../../services/wiki-go
+  - path: ../../services/drawio/drawio.yaml
+    project_directory: ../../services/drawio

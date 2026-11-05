@@ -17,15 +17,15 @@ services:
     volumes:
       - step_ca_data:/home/step
     networks:
-      - homelab-core-net
-      - homelab-gateway-net
+      - network-zone-a
+      - proxy-net
     dns:
       - 192.168.178.250   # Pi-hole
 
     labels:
       - "traefik.enable=true"
 
-      - "traefik.docker.network=homelab-core-net"
+      - "traefik.docker.network=network-zone-a"
 
       - "traefik.http.routers.step-ca.rule=Host(`step-ca.home.arpa`)"
       - "traefik.http.routers.step-ca.entrypoints=web"

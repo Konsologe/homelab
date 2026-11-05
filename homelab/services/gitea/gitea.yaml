@@ -11,6 +11,7 @@ services:
       GITEA__database__PATH: /data/gitea/gitea.db
 
       GITEA__security__INSTALL_LOCK: "true"
+      GITEA__server__LFS_START_SERVER: "true"
 
       GITEA__server__DOMAIN: gitea.home.arpa
       GITEA__server__ROOT_URL: http://gitea.home.arpa/
@@ -28,14 +29,13 @@ services:
       GITEA_DEV_PASSWORD: ${GITEA_DEV_PASSWORD}
       GITEA_DEV_EMAIL: ${GITEA_DEV_EMAIL}
     volumes:
-      - ${DATA_ROOT:?DATA_ROOT must be set}/gitea/gitea-data:/data
+      - gitea-data:/data
     networks:
-      - homelab-devtools-net
-      - homelab-gateway-net
+      - proxy-net
     labels:
       - "traefik.enable=true"
       
-      - "traefik.docker.network=homelab-gateway-net"
+      - "traefik.docker.network=proxy-net"
 
       # HTTP -> HTTPS redirect
       - "traefik.http.routers.gitea.rule=Host(`gitea.home.arpa`)"
@@ -65,4 +65,3 @@ services:
 volumes:
   gitea-data:
     name: gitea-data
-

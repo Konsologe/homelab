@@ -1,10 +1,16 @@
-# Network definition for project: core
-
 networks:
-  homelab-core-net:
+  network-zone-a:
     driver: bridge
-    name: homelab-core-net
+    name: network-zone-a
 
-  homelab-gateway-net:
+  network-zone-b:
     driver: bridge
-    name: homelab-gateway-net
+    name: network-zone-b
+
+  network-zone-c:
+    driver: bridge
+    name: network-zone-c
+
+  proxy-net:
+    driver: bridge
+    name: proxy-net

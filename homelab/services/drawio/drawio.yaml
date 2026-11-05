@@ -5,12 +5,12 @@ services:
     restart: unless-stopped
 
     networks:
-      - homelab-devtools-net
-      - homelab-gateway-net
+      - network-zone-a
+      - proxy-net
 
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=homelab-gateway-net"
+      - "traefik.docker.network=proxy-net"
 
       - "traefik.http.routers.drawio.rule=Host(`drawio.home.arpa`)"
       - "traefik.http.routers.drawio.entrypoints=web"
