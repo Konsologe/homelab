@@ -4,14 +4,14 @@ services:
     container_name: wiki-go
     restart: unless-stopped
     volumes:
-      - ${DATA_ROOT:?DATA_ROOT must be set}/wiki-go/data:/wiki/data:rw
+      - wiki-go-data:/wiki/data:rw
     user: 1000:10
     networks:
       - network-zone-a
       - proxy-net
     labels:
       - "traefik.enable=true"
-      - "traefik.docker.network=homelab-gateway-net"
+      - "traefik.docker.network=network-zone-a"
 
       # HTTP -> HTTPS redirect
       - "traefik.http.routers.wiki-go.rule=Host(`wiki.home.arpa`)"
@@ -31,3 +31,7 @@ services:
 
       # internal port
       - "traefik.http.services.wiki-go.loadbalancer.server.port=8080"
+
+volumes:
+  wiki-go-data:
+    name: wiki-go-data

@@ -34,7 +34,7 @@ services:
     labels:
       - "traefik.enable=true"
 
-      - "traefik.docker.network=homelab-core-net"
+      - "traefik.docker.network=network-zone-a"
 
       # Traefik Dashboard-Router
       - "traefik.http.routers.traefik-dashboard.rule=Host(`traefik.home.arpa`)"
