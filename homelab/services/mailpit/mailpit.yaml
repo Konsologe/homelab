@@ -14,21 +14,12 @@ services:
 
       - "traefik.docker.network=proxy-net"
 
-      # HTTP -> HTTPS redirect
-      - "traefik.http.routers.mailpit.rule=Host(`mailpit.home.arpa`)"
-      - "traefik.http.routers.mailpit.entrypoints=web"
-      - "traefik.http.routers.mailpit.middlewares=mailpit-redirect"
-      - "traefik.http.routers.mailpit.service=mailpit"
-
       # HTTPS router
       - "traefik.http.routers.mailpit-https.rule=Host(`mailpit.home.arpa`)"
       - "traefik.http.routers.mailpit-https.entrypoints=websecure"
       - "traefik.http.routers.mailpit-https.tls=true"
       - "traefik.http.routers.mailpit-https.tls.certresolver=stepca"
       - "traefik.http.routers.mailpit-https.service=mailpit"
-
-      # Redirect Middleware
-      - "traefik.http.middlewares.mailpit-redirect.redirectscheme.scheme=https"
 
       # Mailpit internal port
       - "traefik.http.services.mailpit.loadbalancer.server.port=8025"
