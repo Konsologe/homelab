@@ -17,6 +17,8 @@ services:
       - "--certificatesresolvers.stepca.acme.httpchallenge.entrypoint=web"
       - "--certificatesresolvers.stepca.acme.cacertificates=/step-ca/certs/root_ca.crt"
       - "--certificatesresolvers.stepca.acme.certificatesduration=24"
+      - "traefik.http.routers.traefik-dashboard.middlewares=traefik-dashboard-redirect"
+      - "traefik.http.middlewares.traefik-dashboard-redirect.redirectscheme.scheme=https"
     ports:
       - "80:80"
       - "443:443"
@@ -35,12 +37,6 @@ services:
       - "traefik.enable=true"
 
       - "traefik.docker.network=network-zone-a"
-
-      # Traefik Dashboard-Router
-      - "traefik.http.routers.traefik-dashboard.rule=Host(`traefik.home.arpa`)"
-      - "traefik.http.routers.traefik-dashboard.entrypoints=web"
-      - "traefik.http.routers.traefik-dashboard.service=api@internal"
-      - "traefik.http.routers.traefik-dashboard.middlewares=traefik-dashboard-redirect"
 
       # HTTPS router
       - "traefik.http.routers.traefik-dashboard-https.rule=Host(`traefik.home.arpa`)"
