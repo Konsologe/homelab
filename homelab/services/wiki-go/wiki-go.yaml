@@ -13,21 +13,12 @@ services:
       - "traefik.enable=true"
       - "traefik.docker.network=network-zone-a"
 
-      # HTTP -> HTTPS redirect
-      - "traefik.http.routers.wiki-go.rule=Host(`wiki.home.arpa`)"
-      - "traefik.http.routers.wiki-go.entrypoints=web"
-      - "traefik.http.routers.wiki-go.middlewares=wiki-go-redirect"
-      - "traefik.http.routers.wiki-go.service=wiki-go"
-
       # HTTPS router
       - "traefik.http.routers.wiki-go-https.rule=Host(`wiki.home.arpa`)"
       - "traefik.http.routers.wiki-go-https.entrypoints=websecure"
       - "traefik.http.routers.wiki-go-https.tls=true"
       - "traefik.http.routers.wiki-go-https.tls.certresolver=stepca"
       - "traefik.http.routers.wiki-go-https.service=wiki-go"
-
-      # Redirect Middleware
-      - "traefik.http.middlewares.wiki-go-redirect.redirectscheme.scheme=https"
 
       # internal port
       - "traefik.http.services.wiki-go.loadbalancer.server.port=8080"

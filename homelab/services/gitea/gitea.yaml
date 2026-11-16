@@ -37,21 +37,12 @@ services:
       
       - "traefik.docker.network=proxy-net"
 
-      # HTTP -> HTTPS redirect
-      - "traefik.http.routers.gitea.rule=Host(`gitea.home.arpa`)"
-      - "traefik.http.routers.gitea.entrypoints=web"
-      - "traefik.http.routers.gitea.middlewares=gitea-redirect"
-      - "traefik.http.routers.gitea.service=gitea"
-
       # HTTPS router
       - "traefik.http.routers.gitea-https.rule=Host(`gitea.home.arpa`)"
       - "traefik.http.routers.gitea-https.entrypoints=websecure"
       - "traefik.http.routers.gitea-https.tls=true"
       - "traefik.http.routers.gitea-https.tls.certresolver=stepca"
       - "traefik.http.routers.gitea-https.service=gitea"
-
-      # Redirect Middleware
-      - "traefik.http.middlewares.gitea-redirect.redirectscheme.scheme=https"
 
       # Gitea internal port
       - "traefik.http.services.gitea.loadbalancer.server.port=3000"
