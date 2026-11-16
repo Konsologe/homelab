@@ -45,9 +45,6 @@ services:
       - "traefik.http.routers.traefik-dashboard-https.tls=true"
       - "traefik.http.routers.traefik-dashboard-https.tls.certresolver=stepca"
 
-      # Redirect Middleware
-      - "traefik.http.middlewares.traefik-dashboard-redirect.redirectscheme.scheme=https"
-
 volumes:
   traefik_letsencrypt:
     name: traefik_letsencrypt
